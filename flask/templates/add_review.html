@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Анализ тональности отзывов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding: 30px;
+        }
+
+        label {
+            padding: 10px;
+
+        }
+
+        textarea {
+            max-width: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid'">
+        <h1 style="padding: 10px">Отзывы <small>Добавьте свой:</small></h1>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+                <form role="form-group" method="POST" action="/add_review">
+                    <label for="positive"><b>Достоинства:</b></label>
+                    <p><textarea class="form-control" name="positive" id="positive" rows=7 placeholder="Вашего смартфона или..."></textarea></p>
+                    <label for="negative"><b>Недостатки:</b></label>
+                    <p><textarea class="form-control" name="negative" id="negative" rows=7 placeholder="... Вашего мобильного телефона."></textarea></p>
+                    <label for="comment"><b>Комментарий:</b></label>
+                    <p><textarea class="form-control" name="comment" id="comment" rows=7 placeholder="Ваш отзыв очень важен для нас."></textarea></p>
+                    <p><button type="submit" class="btn btn-primary mb-2" style="margin: 15px">Добавить</button></p>
+                </form>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+                <h3>Все отзывы:</h3>
+                {% for review in reviews %}
+                <div style="padding: 10px; max-width: 85%">
+                    <p><mark><i>{{ review.tag }}</i></mark></p>
+                    <p><b>Достоинства:</b> {{ review.positive }}</p>
+                    <p><b>Недостатки:</b> {{ review.negative }}</p>
+                    <p><b>Комментарий:</b> {{ review.comment }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
